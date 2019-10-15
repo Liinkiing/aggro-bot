@@ -9,7 +9,6 @@
   "license": "MIT",
   "keywords": [],
   "scripts": {
-    "postinstall": "run-s build",
     "start": "node build/main/index.js",
     "describe": "npm-scripts-info",
     "dev": "nodemon",
