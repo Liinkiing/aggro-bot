@@ -27,6 +27,10 @@ export interface AggroApiPostVideoRequestBody {
   replyUrl: string
 }
 
+export interface AggroApiGetVideoRequestsQuery {
+  tweet_url: string
+}
+
 export type AggroApiGetVideoRequests = AggroApiVideoRequest[]
 
 export type AggroApiPostVideoRequest = AggroApiVideoRequest
@@ -38,6 +42,11 @@ export interface AggroApiGetResponseMap {
 
 export interface AggroApiPostResponseMap {
   "/video/requests": AggroApiVideoRequest,
+  [key: string]: any
+}
+
+export interface AggroApiGetQueryMap {
+  "/video/requests": AggroApiGetVideoRequestsQuery,
   [key: string]: any
 }
 

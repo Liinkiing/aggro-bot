@@ -1,4 +1,5 @@
 import {
+  AggroApiGetQueryMap,
   AggroApiGetResponseMap,
   AggroApiPostBodyMap,
   AggroApiPostResponseMap
@@ -15,7 +16,7 @@ class AppAggroApiClient {
     private readonly token: string
   ) {}
 
-  public get = async <K extends keyof AggroApiGetResponseMap>(endpoint: K, query?: any): Promise<AggroApiGetResponseMap[K]> => {
+  public get = async <K extends keyof AggroApiGetResponseMap>(endpoint: K, query?: AggroApiGetQueryMap[K]): Promise<AggroApiGetResponseMap[K]> => {
     const request = new Request(
       `${this.baseUri}${endpoint}` +
       (query ? '?' + querystring.stringify(query) : '')

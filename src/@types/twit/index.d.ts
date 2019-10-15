@@ -192,7 +192,7 @@ declare module 'twit' {
           id_str: string,
         },
         entities: Entities,
-        extended_entities: ExtendedEntities,
+        extended_entities?: ExtendedEntities,
         favorite_count?: number,
         favorited?: boolean,
         filter_level: 'none' | 'low' | 'medium',
