@@ -29,6 +29,7 @@ export default new class Logger {
 
   public error = (message: string, ...args) => {
     error(chalk`${red.bold('[ERROR]')} - ${red(message)}`, ...args)
+    throw new Error(message)
   }
 }
 

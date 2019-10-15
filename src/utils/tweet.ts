@@ -15,6 +15,13 @@ export const NO_VIDEO_TWEET_MESSAGES = new List<string>([
   `T'as cru que jpouvais télécharger du texte ? Enfin si c'est possible mais j'sers pas à ça frère, tu t'es trompé sur la personne`,
 ])
 
+export const OWN_TWEET_MESSAGES = new List<string>([
+  `Pouce. Tu viens vraiment de me mentionner sur mon propre tweet ? Tu mérites des gifles.. ✋`,
+  `Alors je t'explique kheyou, je suis née dans ce monde afin de télécharger des vidéos, pas me télécharger moi même, c'est un peu paradoxal 🤖`,
+  `GNGNGNGNGN Je Me MeNTiONNe MOi MÊME. Bravo la maturité...`,
+  `BAKA BAKA BAKA BAKAAAAAAAAAAAAAAAAAAAAAAAA (ça veut dire idiot au cas où tu savais pas). POURQUOI TU M'AGGRO SUR MOI MÊME ????`,
+])
+
 export const ALREADY_AVAILABLE_VIDEO_TWEET_MESSAGES = (downloadUrl: string) => new List<string>([
   `Mais non jui éclaté au sol, j'avais déjà cette vidéo, toi tu dois être un mec drôle du coup. Tiens le lien kheyou : ${downloadUrl}`,
   `Gotta go fast comme Sahnic : ⚡ ${downloadUrl} ⚡`,
