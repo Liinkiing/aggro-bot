@@ -3,7 +3,11 @@ import './config';
 import { Twitter } from 'twit';
 import { AggroBot } from './bot/AggroBot';
 import AggroApiClient from './client/AggroApiClient';
-import { buildTweetUrl } from './utils/tweet';
+import {
+  ALREADY_AVAILABLE_VIDEO_TWEET_MESSAGES,
+  buildTweetUrl,
+  NEW_REQUEST_TWEET_MESSAGES, NO_VIDEO_TWEET_MESSAGES
+} from './utils/tweet';
 import Logger from './services/Logger';
 
 const bot = new AggroBot({
@@ -30,7 +34,7 @@ bot
 
         if (duplicates.length === 0) {
           Logger.info(`No video request found for tweet "${repliedToUrl}". Adding a new video request...`);
-          await bot.replyToTweet(tweet.id_str, 'ok chef je te fais ça')
+          await bot.replyToTweet(tweet.id_str, NEW_REQUEST_TWEET_MESSAGES.random())
           try {
             await AggroApiClient.post('/video/requests', {
               replyUrl,
@@ -47,7 +51,7 @@ bot
           if (videoRequest.processed) {
             Logger.info('The video request was correctly processed and has a download link.');
             Logger.info(videoRequest._href.download);
-            await bot.replyToTweet(tweet.id_str, `tiens chef, je l'avais déjà dl : ${videoRequest._href.download}`)
+            await bot.replyToTweet(tweet.id_str, ALREADY_AVAILABLE_VIDEO_TWEET_MESSAGES(videoRequest._href.download).random())
           } else {
             Logger.warn(`
           The video request was not correctly processed. Maybe an async job has failed. 
@@ -57,6 +61,7 @@ bot
         }
       } else {
         Logger.warn(`${requestedBy} tried to call me on a tweet with no videos...`);
+        await bot.replyToTweet(tweet.id_str, NO_VIDEO_TWEET_MESSAGES.random())
       }
     }
   });
