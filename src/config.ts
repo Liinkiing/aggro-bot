@@ -1,12 +1,13 @@
 import * as dotenv from 'dotenv';
 import fs from 'fs';
+import * as pathHelper from 'path'
 
 dotenv.config();
 // tslint:disable-next-line:one-variable-per-declaration
 let envConfig, path;
 switch (process.env.NODE_ENV) {
   case 'test':
-    path = `${__dirname}/../.env.test`;
+    path = pathHelper.resolve(`${__dirname}/../.env.test`);
     if (fs.existsSync(path)) {
       envConfig = dotenv.parse(fs.readFileSync(path));
       for (const k in envConfig) {
@@ -17,7 +18,7 @@ switch (process.env.NODE_ENV) {
     }
     break;
   case 'production':
-    path = `${__dirname}/../.env.production`;
+    path = pathHelper.resolve(`${__dirname}/../.env.production`);
     if (fs.existsSync(path)) {
       envConfig = dotenv.parse(fs.readFileSync(path));
       for (const k in envConfig) {
@@ -28,7 +29,7 @@ switch (process.env.NODE_ENV) {
     }
     break;
   default:
-    path = `${__dirname}/../.env.local`;
+    path = pathHelper.resolve(`${__dirname}/../.env.local`);
     if (fs.existsSync(path)) {
       envConfig = dotenv.parse(fs.readFileSync(path));
       for (const k in envConfig) {
