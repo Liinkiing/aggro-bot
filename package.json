@@ -54,7 +54,10 @@
   },
   "dependencies": {
     "@types/dotenv": "^6.1.1",
+    "@types/node-fetch": "^2.5.2",
     "dotenv": "^8.1.0",
+    "node-fetch": "^2.6.0",
+    "querystring": "^0.2.0",
     "sha.js": "^2.4.11",
     "twit": "^2.2.11"
   },

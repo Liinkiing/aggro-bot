@@ -1,6 +1,8 @@
+/* tslint:disable:ordered-imports */
+import './config';
 import { Twitter } from 'twit';
 import { AggroBot } from './bot/AggroBot';
-import './config';
+import AggroApiClient from './client/AggroApiClient';
 
 const bot = new AggroBot({
   access_token: process.env.TWITTER_ACCESS_TOKEN,
@@ -14,8 +16,9 @@ const bot = new AggroBot({
     .listenMentions()
     .on('tweet', async (tweet: Twitter.Status) => {
       if (tweet.in_reply_to_status_id_str) {
-        const repliedTo = await bot.getTweet(tweet.in_reply_to_status_id_str)
-        console.log(repliedTo);
+        // const repliedTo = await bot.getTweet(tweet.in_reply_to_status_id_str)
+        const response = await AggroApiClient.get('/video/requests')
+        console.log(response);
       }
     })
 })()
