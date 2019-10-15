@@ -15,8 +15,16 @@ export class AggroBot {
     });
   }
 
+  public replyToTweet = async (tweetId: string, body: string): Promise<T.Twitter.Status> => {
+     return (await this.twitter.post('statuses/update', {
+         auto_populate_reply_metadata: true,
+         in_reply_to_status_id: tweetId,
+         status: body
+       })).data as T.Twitter.Status
+  }
+
   public getTweet = async (tweetId: string): Promise<T.Twitter.Status> => {
-    return ((await this.twitter.get(`statuses/show/${tweetId}`)).data as T.Twitter.Status)
+    return (await this.twitter.get(`statuses/show/${tweetId}`)).data as T.Twitter.Status
   }
 
   public listenMentions = () => {
