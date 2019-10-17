@@ -12,6 +12,8 @@
     "start": "node build/main/index.js",
     "describe": "npm-scripts-info",
     "dev": "nodemon",
+    "heroku:stop": "heroku ps:scale worker=0",
+    "heroku:run": "heroku ps:scale worker=1",
     "build": "run-s clean && run-p build:*",
     "build:main": "tsc -p tsconfig.json",
     "build:module": "tsc -p tsconfig.module.json",
