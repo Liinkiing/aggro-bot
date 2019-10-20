@@ -55,10 +55,10 @@ const execute = async () => {
           } else {
             Logger.info(`An existing video request was found for tweet "${repliedToUrl}".`);
             const videoRequest = { ...duplicates[0] };
-            if (videoRequest.processed) {
+            if (videoRequest.processed && videoRequest.video) {
               Logger.info('The video request was correctly processed and has a download link.');
-              Logger.info(videoRequest._href.download);
-              await bot.replyToTweet(tweet.id_str, ALREADY_AVAILABLE_VIDEO_TWEET_MESSAGES(videoRequest._href.download).random());
+              Logger.info(videoRequest.video._href.download);
+              await bot.replyToTweet(tweet.id_str, ALREADY_AVAILABLE_VIDEO_TWEET_MESSAGES(videoRequest.video._href.download).random());
             } else {
               Logger.warn(`
           The video request was not correctly processed. Maybe an async job has failed. 
